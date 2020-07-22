@@ -816,8 +816,7 @@
       <div class="row">
         <!-- Start Col -->
         <div class="col-lg-6 col-md-12">
-          <form action="https://www.google.com/" id="contactForm"
-            onsubmit=" emailjs.sendForm('default_service', 'form_template', this);  return false;" method="post">
+            <form id="contactForm">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -949,11 +948,30 @@
 
   <!-- jQuery first, then Tether, then Bootstrap JS. -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     (function () {
       emailjs.init("user_csfRDzqLKMdAn2P7x2Oor");
     })();
-  </script>
+  </script> -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("user_csfRDzqLKMdAn2P7x2Oor");
+      })();
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+          event.preventDefault();
+          emailjs.sendForm('default_service', 'form_template', this).then(function (response) {
+            console.log('SUCCESS!', response.status, response.text);
+            window.location.href = "submit.html";
+          }, function (error) {
+            console.log('FAILED...', error);
+          });
+        });
+      }
+    </script>
 
 
   <script src="js/jquery-min.js"></script>
